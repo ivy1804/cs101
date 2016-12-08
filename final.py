@@ -193,7 +193,7 @@ def add_connection(network, user_A, user_B):
     dataList=network[user_A]
     if user_B not in dataList[0]:
         dataList[0].append(user_B)
-	return True
+    return network
 
 # ----------------------------------------------------------------------------- 
 # add_new_user(network, user, games): 
@@ -215,8 +215,9 @@ def add_connection(network, user_A, user_B):
 def add_new_user(network, user, games):
     if user not in network:
         network[user]=[[],games]
-        return True
-    return False
+        return network
+    else:
+        return network
 		
 # ----------------------------------------------------------------------------- 
 # get_secondary_connections(network, user): 
@@ -264,7 +265,7 @@ def count_common_connections(network, user_A, user_B):
     friends_A=get_connections(network,user_A)
     friends_B=get_connections(network,user_B)
     if not friends_A or not friends_B:
-        return 0
+        return False
     result=0
     for friend in friends_A:
         if friend in friends_B:
@@ -336,7 +337,7 @@ def find_path_to_friend(network, user_A, user_B):
 # Replace this with your own procedure! You can also uncomment the lines below
 # to see how your code behaves. Have fun!
 
-net = create_data_structure(example_input)
+#net = create_data_structure(example_input)
 #print net
 #print get_connections(net, "Debra")
 #print get_connections(net, "Mercedes")
@@ -346,4 +347,13 @@ net = create_data_structure(example_input)
 #print add_new_user(net, "Nick", ["Seven Schemers", "The Movie: The Game"]) # True
 #print get_secondary_connections(net, "Mercedes")
 #print count_common_connections(net, "Mercedes", "John")
-print find_path_to_friend(net, "John", "Ollie")
+#print find_path_to_friend(net, "John", "Ollie")
+network = create_data_structure('')
+network = add_new_user(network, 'Alice', [])
+network = add_new_user(network, "Bob", [])
+print network
+network = add_connection(network, 'Alice', 'Bob')
+print network
+network = add_connection(network, 'Alice', 'Bob')
+get_connections(network, 'Alice')
+print network
